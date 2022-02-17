@@ -15,10 +15,12 @@ function App() {
           <Link to="/">main</Link>
         </nav>
         { /* router view */ }
-        <Routes>
-          <Route path="home" element={<Home />} />
-          <Route path="/" element={<Counter />} />
-        </Routes>
+        <div className="mt-3">
+          <Routes>
+            <Route path="home" element={<Home />} />
+            <Route path="/" element={<Counter />} />
+          </Routes>
+        </div>
       </header>
     </div>
   )

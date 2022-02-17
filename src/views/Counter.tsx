@@ -13,7 +13,7 @@ function Counter() {
   return (
     <div className="App">
       <p>
-        <button type="button" onClick={ () => dispatch(increment())}>
+        <button type="button" className="bg-slate-400" onClick={ () => dispatch(increment())}>
           count is: {count}
         </button>
       </p>
