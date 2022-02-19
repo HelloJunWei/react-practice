@@ -21,24 +21,20 @@ const userSlice = createSlice({
   // Reducer comes here
   reducers: {
   },
-  extraReducers: {
-    // @ts-ignore
-    [login.fulfilled]: (state, { payload }) => {
+  extraReducers(builder) {
+    builder.addCase(login.fulfilled, (state, { payload}) => {
       state.token = payload.token
       state.email = payload.email
       state.displayName = payload.displayName
       state.isLoading = false
       state.isSuccess = true
-    },
-    // @ts-ignore
-    [login.pending]: (state) => {
+    }),
+    builder.addCase(login.pending, (state) => {
       state.isLoading = true
-    },
-    // [login.rejected]: (state, { payload }) => {
-      // state.token = payload.token
-      // state.email = payload.email
-      // state.displayName = payload.displayName
-    // },
+    })
+    // builder.addCase(login.rejected, (state) => {
+      // state.isLoading = true
+    // })
   },
 })
 export const userSelector = (state: any) => state.user

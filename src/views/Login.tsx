@@ -16,11 +16,11 @@ export default function () {
     }
   }, [isSuccess]);
 
-  const onSubmit = (data: { account: string, password: string }) => {
+  const onSubmit = async(data: { account: string, password: string }) => {
     dispatch(login(data))
 
-    /* 不能這樣用？
-     * await dispatch(login(data))
+    /*
+     * await dispatch(login(data)).unwrap()
      * navigate('/')
      */
   }
