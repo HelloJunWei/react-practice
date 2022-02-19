@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import {userSelector} from './store/user'
 
 
-// 驗證 user
+// 驗證 user router guard
 function GuardedRoute ({ children }: { children: JSX.Element }) {
   const { isSuccess } = useSelector(userSelector)
   return (
@@ -23,11 +23,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello Vite + React!</p>
-        <nav>
-          <Link to="/home">home</Link> {'/'}
-          <Link to="/">main</Link> {'/'}
-          <Link to="/login">login</Link>
-        </nav>
+        {
+          /*
+           <nav>
+           <Link to="/home">home</Link> {'/'}
+           <Link to="/">main</Link> {'/'}
+           <Link to="/login">login</Link>
+           </nav>
+          */
+        }
         { /* router view */ }
         <div className="mt-3">
           <Routes>

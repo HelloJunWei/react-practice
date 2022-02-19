@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
   }
 )
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: {
     token: '',
@@ -57,3 +57,5 @@ const sleep = async(ts: number): Promise<void>=> {
 }
 
 
+
+export default userSlice

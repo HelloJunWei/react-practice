@@ -31,15 +31,15 @@ export default function () {
         Login
       </p>
       <input
-        value={account}
-        onChange={e => setAccount(e.target.value)}
+        value={ account }
+        onChange={ e => setAccount(e.target.value) }
         type="text"
         placeholder="帳號"
         className="mt-2 bg-gray-600 border rounded-md"
        />
       <input
-        value={password}
-        onChange={e => setPassword(e.target.value)}
+        value={ password }
+        onChange={ e => setPassword(e.target.value) }
         type="password"
         placeholder="密碼"
         className="mt-2 bg-gray-600 border rounded-md"

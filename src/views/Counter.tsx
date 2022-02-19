@@ -1,5 +1,5 @@
 import '../App.css'
-import { InitState, increment, incrementAsync } from '../store'
+import { InitState, increment, incrementAsync } from '../store/counter'
 import { useSelector, useDispatch } from 'react-redux'
 
 function Counter() {
