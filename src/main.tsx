@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import store from './store/index'
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
 ReactDOM.render(
@@ -11,7 +11,7 @@ ReactDOM.render(
     <BrowserRouter>
       <React.StrictMode>
       <App />
-      </React.StrictMode>,
+      </React.StrictMode>
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

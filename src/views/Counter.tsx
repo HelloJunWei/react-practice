@@ -1,4 +1,3 @@
-import logo from '../logo.svg'
 import '../App.css'
 import { InitState, increment, incrementAsync } from '../store'
 import { useSelector, useDispatch } from 'react-redux'

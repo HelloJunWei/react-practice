@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { configureStore } from '@reduxjs/toolkit'
 import { Dispatch } from "react"
+import { userSlice } from "./user"
 
 export type InitState = {
   count: number
@@ -40,5 +41,6 @@ export const incrementAsync = (value: number) => (dispatch: Dispatch<any>) => {
 export default configureStore({
   reducer: {
     counter: slice.reducer,
+    user: userSlice.reducer
   },
 });
