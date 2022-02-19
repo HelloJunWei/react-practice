@@ -1,15 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import { UserServices } from "../services"
 
 export const login = createAsyncThunk(
   'user/login',
   async ({ account, password }: { account: string, password: string }) => {
-    console.log(account, password)
-    await sleep(1500)
-    return {
-      token: 'token',
-      email: 'test@email.com',
-      displayName: 'Neil'
-    }
+    const data = await UserServices.userLogin(account, password)
+    return data
   }
 )
 
@@ -46,16 +42,5 @@ const userSlice = createSlice({
   },
 })
 export const userSelector = (state: any) => state.user
-
-
-const sleep = async(ts: number): Promise<void>=> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve()
-    }, ts)
-  })
-}
-
-
 
 export default userSlice
