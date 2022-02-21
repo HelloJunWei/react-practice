@@ -14,15 +14,14 @@ export default function () {
     if (isSuccess) {
       navigate('/')
     }
-  }, [isSuccess]);
+  }, [isSuccess])
 
   const onSubmit = async(data: { account: string, password: string }) => {
     dispatch(login(data))
-
-    /*
-     * await dispatch(login(data)).unwrap()
-     * navigate('/')
-     */
+     // @ts-ignore
+     // await dispatch(login(data)).unwrap()
+     // navigate('/')
+     
   }
 
   return (

@@ -32,9 +32,9 @@ const userSlice = createSlice({
     builder.addCase(login.pending, (state) => {
       state.isLoading = true
     })
-    // builder.addCase(login.rejected, (state) => {
-      // state.isLoading = true
-    // })
+    builder.addCase(login.rejected, (state) => {
+      state.isLoading = true
+    })
   },
 })
 export const userSelector = (state: any) => state.user

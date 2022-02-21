@@ -9,7 +9,7 @@ const initialState: InitState = {
   count: 0
 }
 
-export const incrementAsync2 = createAsyncThunk('counter/addAsync', async(value: number) => {
+export const incrementAsync = createAsyncThunk('counter/addAsync', async(value: number) => {
   await sleep(1000)
   return { value }
 })
@@ -29,7 +29,7 @@ const slice = createSlice({
     }
   },
   extraReducers (builder) {
-    builder.addCase(incrementAsync2.fulfilled, (state, { payload }) => {
+    builder.addCase(incrementAsync.fulfilled, (state, { payload }) => {
       state.count += payload.value
     })
 
@@ -38,10 +38,9 @@ const slice = createSlice({
 
 export const { increment, decrement, addByValue } = slice.actions
 
-export const incrementAsync = (value: number) => (dispatch: Dispatch<any>) => {
-  setTimeout(() => {
-    dispatch(addByValue(value))
-  }, 1500)
+export const incrementAsyncThunk = (value: number) => async(dispatch: Dispatch<any>) => {
+  await sleep(1500)
+  dispatch(addByValue(value))
 }
 
 const sleep = async(ms: number): Promise<void> => {
@@ -51,5 +50,20 @@ const sleep = async(ms: number): Promise<void> => {
     }, ms)
   })
 }
+
+
+/*
+ *  thunk function 一種寫 function 的思維
+    const add5 = (x) => {
+      return x + 5;
+    }
+
+    const thunk => (value) => (add5) {
+      return add5(value) * 2;
+    }
+
+    thunk(1)(add5)
+ */
+
 
 export default slice

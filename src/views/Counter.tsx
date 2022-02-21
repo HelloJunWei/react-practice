@@ -1,6 +1,7 @@
 import '../App.css'
-import { InitState, increment, incrementAsync, incrementAsync2 } from '../store/counter'
+import { InitState, increment, incrementAsync, incrementAsyncThunk } from '../store/counter'
 import { useSelector, useDispatch } from 'react-redux'
+import {useEffect} from 'react'
 
 function Counter() {
   const count = useSelector((state: { counter: InitState }) => {
@@ -8,10 +9,13 @@ function Counter() {
   })
 
   const dispatch = useDispatch()
+  useEffect(() => {}, [dispatch])
 
+  
   const addAsync = async() => {
-    await dispatch(incrementAsync2(3)).unwrap()
-    console.log('add finish')
+    // dispatch(incrementAsyncThunk(3))
+    // -----
+    dispatch(incrementAsync(3))
   }
 
   return (
