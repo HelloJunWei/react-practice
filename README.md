@@ -1,9 +1,3 @@
-# redux-practice
-## 練習 redux
+# react 練習
 
-利用 vite 起一個 react 專案
-
-## dev
-```bash
-yarn dev
-```
+1. redux-practice
