@@ -10,7 +10,7 @@ export default function App() {
   console.log(location)
   return (
     <div>
-      <NavBar active={location.pathname} />
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/store"  element={<Store />} />
