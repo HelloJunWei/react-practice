@@ -1,14 +1,16 @@
 {
-  "product": {
-    "data": [
-      {
-        "id": 1,
-        "name": "product1"
-      },
-      {
-        "id": 2,
-        "name": "product2"
-      }
-    ]
-  }
+  "product": [
+    {
+      "id": "1",
+      "name": "product1",
+      "price": 10,
+      "imgUrl": "https://i.imgur.com/tisbV2F.jpeg"
+    },
+    {
+      "id": "2",
+      "name": "product1",
+      "price": 100,
+      "imgUrl": "https://i.imgur.com/N4FGIS9.jpeg"
+    }
+  ]
 }
