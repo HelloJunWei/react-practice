@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getProductList } from '../api/product'
+import StoreCard from '../components/StoreCard'
 import type { Product } from '../types/product'
 
 export default function Store () {
@@ -11,11 +12,11 @@ export default function Store () {
   }, [])
 
   return (
-    <div>
+    <div className="flex justify-center items-center flex-col">
       <h1>store</h1>
       {
         productList.map((val) => {
-          return <p key={val.id}> { val.name } </p>
+          return <StoreCard key={val.id} imgUrl={val.imgUrl} name={val.name} price={val.price} id={val.id} />
         })
       }
     </div>
