@@ -16,7 +16,12 @@ export default function Store () {
       <h1>store</h1>
       {
         productList.map((val) => {
-          return <StoreCard key={val.id} imgUrl={val.imgUrl} name={val.name} price={val.price} id={val.id} />
+          return <StoreCard
+            id={val.id}
+            key={val.id}
+            imgUrl={val.imgUrl}
+            name={val.name}
+            price={val.price} />
         })
       }
     </div>

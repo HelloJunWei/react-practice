@@ -4,6 +4,7 @@ import About from './views/About'
 import Store from './views/Store'
 import NavBar from './components/NavBar'
 import ErrorBoundary from './components/ErrorBoundart'
+import { ShoppingCartProvider } from './context/ShoppingCartContext'
 
 
 export default function App() {
@@ -12,12 +13,14 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/store"  element={<Store />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+        <ShoppingCartProvider>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/store"  element={<Store />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </ShoppingCartProvider>
       </div>
     </ErrorBoundary>
   )

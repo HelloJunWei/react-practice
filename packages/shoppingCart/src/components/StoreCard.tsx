@@ -1,6 +1,6 @@
 import formatCurrency from '../utils/formatCurrency'
-import PrimaryButton from '../components/PrimaryButton'
-import {useState} from 'react'
+import MyButton from '../components/MyButton'
+import { useShoppingCart } from '../context/ShoppingCartContext'
 type Props = {
   id: string
   imgUrl: string,
@@ -8,14 +8,25 @@ type Props = {
   price: number
 }
 export default function ({ imgUrl, name, price, id }: Props) {
-  const [quantity, setQuantity] = useState(0)
+  const {
+    getItemQuantity,
+    increaseCartQuantity,
+    decreaseCartQuantity,
+    removeFromCart
+  } = useShoppingCart()
+
+  const quantity = getItemQuantity(id)
 
   const AddQuantity = () => {
-    setQuantity((quantity) => quantity + 1 )
+    increaseCartQuantity(id)
   }
 
   const subtractionQuantity = () => {
-    setQuantity((quantity) => quantity - 1 )
+    decreaseCartQuantity(id)
+  }
+
+  const removeQuantity = () => {
+    removeFromCart(id)
   }
   return (
     <div className="max-w-[700px] w-11/12 my-2 shadow-md">
@@ -28,14 +39,14 @@ export default function ({ imgUrl, name, price, id }: Props) {
       </div>
       <div className="my-2 mx-2">
         { quantity === 0 ?
-            <PrimaryButton className="w-full" onClick={AddQuantity}>加入到購物車</PrimaryButton> :
+            <MyButton className="w-full" onClick={AddQuantity}>加入到購物車</MyButton> :
             <div className="flex justify-center flex-col items-center">
               <div className="flex items-center">
-                <PrimaryButton onClick={subtractionQuantity}>-</PrimaryButton>
+                <MyButton onClick={subtractionQuantity}>-</MyButton>
                 <span className="mx-2">數量 {quantity}</span>
-                <PrimaryButton onClick={AddQuantity}>+</PrimaryButton>
+                <MyButton onClick={AddQuantity}>+</MyButton>
               </div>
-              Bye 
+              <MyButton className="mt-3" danger onClick={removeQuantity}>移除</MyButton>
             </div>
         }
       </div>
