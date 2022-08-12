@@ -6,14 +6,17 @@ import type { Product } from '../types/product'
 export default function Store () {
   const [productList , setProductList] = useState<Product[]>([])
   useEffect(() => {
+    let didCancel = false
+    if (didCancel) return
     getProductList().then((data: Product[]) => {
       setProductList(data)
     })
+    // unmounted 的時候不會觸發 useEffect
+    return () => { didCancel = true }
   }, [])
 
   return (
     <div className="flex justify-center items-center flex-col">
-      <h1>store</h1>
       {
         productList.map((val) => {
           return <StoreCard

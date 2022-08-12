@@ -28,6 +28,7 @@ export default function ({ imgUrl, name, price, id }: Props) {
   const removeQuantity = () => {
     removeFromCart(id)
   }
+
   return (
     <div className="max-w-[700px] w-11/12 my-2 shadow-md">
       <img className="w-full object-cover" src={imgUrl} />

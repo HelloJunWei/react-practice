@@ -1,10 +1,10 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Home from './views/Home'
 import About from './views/About'
 import Store from './views/Store'
-import NavBar from './components/NavBar'
+import PageNotFound from './views/PageNotFound'
+import Shop from './views/Shop'
 import ErrorBoundary from './components/ErrorBoundart'
-import { ShoppingCartProvider } from './context/ShoppingCartContext'
 
 
 export default function App() {
@@ -13,14 +13,15 @@ export default function App() {
   return (
     <ErrorBoundary>
       <div>
-        <ShoppingCartProvider>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/store"  element={<Store />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </ShoppingCartProvider>
+        <Routes >
+          <Route path="/example" element={<Home />} />
+          <Route path="/" element={<Shop />}>
+            <Route index element={<Store /> } />
+            <Route path="about" element={<About />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/404" replace />} />
+          <Route path="/404" element={<PageNotFound />} />
+        </Routes>
       </div>
     </ErrorBoundary>
   )

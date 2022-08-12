@@ -1,10 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react'
 
 export type ShoppingCardProviderType = {
   children: ReactNode
 }
 
 type ShoppingCartContextType = {
+  cartQuantity: number
   getItemQuantity: (id: string) => number
   increaseCartQuantity: (id: string) => void
   decreaseCartQuantity: (id: string) => void
@@ -29,10 +30,15 @@ export function ShoppingCartProvider({ children }: ShoppingCardProviderType) {
     return cartItems.find((item) => item.id === id)?.quantity || 0
   }
 
+  const cartQuantity = useMemo(() => {
+    return cartItems.reduce((quantity, item) => {
+      return item.quantity + quantity
+    }, 0)
+  }, [cartItems])
+
   const increaseCartQuantity = (id: string) => {
     setCartItems((current) => {
       if (current.find(val => val.id === id) === undefined ) {
-        console.log([...current, { id, quantity: 1 }])
         return [...current, { id, quantity: 1 }]
       }
      return current.map((val) => {
@@ -66,6 +72,7 @@ export function ShoppingCartProvider({ children }: ShoppingCardProviderType) {
 
   return (
     <ShoppingCartContext.Provider value={{
+      cartQuantity,
       getItemQuantity,
       increaseCartQuantity,
       decreaseCartQuantity,
