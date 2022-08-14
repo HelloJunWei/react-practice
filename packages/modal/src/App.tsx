@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
+import useModal from './hooks/modals'
 
 function App() {
   const [count, setCount] = useState(0)
+  const { openModal } = useModal()
 
   return (
     <div className="App">
@@ -17,7 +19,7 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={()=> setCount((prev) => prev + 1)}>
           count is {count}
         </button>
         <p>
@@ -27,6 +29,9 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <button onClick={()=> openModal('test', { test: 'props' })}>
+        openModal
+      </button>
     </div>
   )
 }
