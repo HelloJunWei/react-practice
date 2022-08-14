@@ -9,8 +9,20 @@ function Modal({ componentName, props }: Props) {
   console.log(props)
   // TODO: dynamic props and component
   return (
-    <div className={modalCss.modal}>
-      modal
+    <div className={modalCss.modalMask}>
+      <div className={modalCss.modalWrapper}>
+        <div className={modalCss.modalContainer}>
+          <div className={modalCss.modalHeader}>
+            header
+          </div>
+          <div className={modalCss.modalBody}>
+            body
+          </div>
+          <div className={modalCss.modalFooter}>
+            footer
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
