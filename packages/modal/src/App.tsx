@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import useModal from './hooks/modals'
@@ -14,6 +14,16 @@ function App() {
     }, 5000)
 
   }, [])
+
+  useEffect(() => {
+    let check = false
+    if (check) return
+    console.log('fire')
+    return () => {
+      check = true
+      console.log('un fire')
+    }
+  }, [count])
   return (
     <div className="App">
       <div>

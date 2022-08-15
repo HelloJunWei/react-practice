@@ -1,14 +1,15 @@
 import { useRef, useEffect } from 'react'
 import { useClickAway } from 'react-use'
 import modalCss from '../../assets/css/modal.module.scss'
+import { useModalContext } from './context/modalContext'
 type Props = {
   componentName: any,
   props: any,
   isShow: boolean,
-  closeFunction: Function
 }
 
-function Modal({ componentName, props, isShow, closeFunction }: Props) {
+function Modal({ componentName, props, isShow }: Props) {
+  const { closeModal } = useModalContext()
   console.log(componentName)
   console.log(props)
 
@@ -25,7 +26,7 @@ function Modal({ componentName, props, isShow, closeFunction }: Props) {
   useClickAway(ref, () => {
     // TODO: click outside to close
     console.log('OUTSIDE CLICKED')
-    closeFunction()
+    closeModal()
   });
   // TODO: dynamic props and component
   return (

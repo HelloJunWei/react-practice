@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Modal from './Modal'
+import { ModalContextProvider } from './context/modalContext'
 
 type Props = {
   componentName: any,
@@ -20,8 +21,9 @@ export default function () {
 
     const removeChild = () => {
       setTimeout(() => {
+        console.log('here')
         container.parentNode!.removeChild(container)
-      }, 1000)
+      }, 500)
     }
 
     let _closeModal: null | Function = null
@@ -70,7 +72,9 @@ function Mock({ componentName, props, setCloseModalFn, removeChild }: Props) {
   //TODO: 利用 context 把 closeModal 傳下去
 
   return (
-    <Modal componentName={componentName} props={props} isShow={isShow} closeFunction={closeFunction} />
+    <ModalContextProvider closeModal={closeFunction}>
+      <Modal componentName={componentName} props={props} isShow={isShow} />
+    </ModalContextProvider>
   )
 }
 
