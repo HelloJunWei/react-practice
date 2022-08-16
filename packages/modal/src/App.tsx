@@ -8,11 +8,7 @@ function App() {
   const { openModal } = useModal()
 
   const testOpenAndCloseModal = useCallback(() => {
-    const{ closeModal } = openModal('test', 'test')
-    setTimeout(() => {
-      if(closeModal) closeModal()
-    }, 5000)
-
+    openModal('test', 'test')
   }, [])
 
   useEffect(() => {

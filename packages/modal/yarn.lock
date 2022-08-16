@@ -407,6 +407,11 @@ chalk@^2.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
+
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
@@ -757,6 +762,11 @@ magic-string@^0.26.2:
   integrity sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==
   dependencies:
     sourcemap-codec "^1.4.8"
+
+material-icons@^1.11.10:
+  version "1.11.10"
+  resolved "https://registry.yarnpkg.com/material-icons/-/material-icons-1.11.10.tgz#66d0af836294f494d76a88e61f04ef3531377fd8"
+  integrity sha512-1nGlVYwH98BQGSoxHf1QCCDll6AmnkxuATjTHREvy8BSEc6EfRkvcsQwEmSgAY7qcKLV3Ip81u9YEiH/sjQgkg==
 
 mdn-data@2.0.14:
   version "2.0.14"

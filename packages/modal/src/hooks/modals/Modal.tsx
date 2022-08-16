@@ -2,6 +2,8 @@ import { useRef, useEffect } from 'react'
 import { useClickAway } from 'react-use'
 import modalCss from '../../assets/css/modal.module.scss'
 import { useModalContext } from './context/modalContext'
+import MaterialIcon from '../../components/MaterialIcon'
+
 type Props = {
   componentName: any,
   props: any,
@@ -24,8 +26,6 @@ function Modal({ componentName, props, isShow }: Props) {
 
   const ref = useRef(null)
   useClickAway(ref, () => {
-    // TODO: click outside to close
-    console.log('OUTSIDE CLICKED')
     closeModal()
   });
   // TODO: dynamic props and component
@@ -33,6 +33,9 @@ function Modal({ componentName, props, isShow }: Props) {
     <div className={modalCss.modalMask}>
       <div className={modalCss.modalWrapper}>
         <div ref={ref} className={modalCss.modalContainer}>
+          <div className={modalCss.cursorSide}>
+            <MaterialIcon className={modalCss.cursorPointer} onClick={closeModal} icon="close" />
+          </div>
           <div className={modalCss.modalHeader}>
             header
           </div>
