@@ -1,11 +1,11 @@
-import { MouseEventHandler } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 type IconType = 'close'
 
 export type MaterialIconProp = {
   icon: IconType
   className?: string
-  onClick?: MouseEventHandler<HTMLElement>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 }
 export default function ({ icon, className, onClick }: MaterialIconProp) {
   const classes = classNames(
