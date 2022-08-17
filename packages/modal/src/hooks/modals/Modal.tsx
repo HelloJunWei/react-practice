@@ -1,19 +1,31 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, lazy, Suspense } from 'react'
 import { useClickAway } from 'react-use'
 import modalCss from '../../assets/css/modal.module.scss'
 import { useModalContext } from './context/modalContext'
 import MaterialIcon from '../../components/MaterialIcon'
+import Loading from '../../components/Loading'
+import type {
+  ComplexActionType,
+  ComponentAndProps,
+  Props as DynamicComponentType,
+  ComponentName
+} from './type'
 
 type Props = {
-  componentName: any,
-  props: any,
   isShow: boolean,
+  componentName: ComponentName<ComponentAndProps>,
+  props: DynamicComponentType<ComponentAndProps, ComplexActionType['component']>,
 }
+
+const componentData = {
+  'InputModal': lazy(() => import('./components/InputModal')),
+  'AlertModal': lazy(() => import('./components/Alert'))
+}
+
 
 function Modal({ componentName, props, isShow }: Props) {
   const { closeModal } = useModalContext()
-  console.log(componentName)
-  console.log(props)
+  const Component = componentData[componentName]
 
   useEffect(() => {
   if (!isShow) return
@@ -27,25 +39,18 @@ function Modal({ componentName, props, isShow }: Props) {
   const ref = useRef(null)
   useClickAway(ref, () => {
     closeModal()
-  });
-  // TODO: dynamic props and component
+  })
   return (
     <div className={modalCss.modalMask}>
       <div className={modalCss.modalWrapper}>
-        <div ref={ref} className={modalCss.modalContainer}>
-          <div className={modalCss.cursorSide}>
-            <MaterialIcon className={modalCss.cursorPointer} onClick={closeModal} icon="close" />
+        <Suspense fallback={<Loading />} >
+          <div ref={ref} className={modalCss.modalContainer}>
+            <div className={modalCss.cursorSide}>
+              <MaterialIcon className={modalCss.cursorPointer} onClick={closeModal} icon="close" />
+            </div>
+            <Component {...props} />
           </div>
-          <div className={modalCss.modalHeader}>
-            header
-          </div>
-          <div className={modalCss.modalBody}>
-            body
-          </div>
-          <div className={modalCss.modalFooter}>
-            footer
-          </div>
-        </div>
+        </Suspense>
       </div>
     </div>
   )

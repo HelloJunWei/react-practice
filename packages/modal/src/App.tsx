@@ -2,13 +2,28 @@ import { useState, useCallback, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import useModal from './hooks/modals'
+import { sleep } from './utils/utils'
+
+const submitFn = async(value: string) => {
+  await sleep(1000)
+  console.log(value)
+}
 
 function App() {
   const [count, setCount] = useState(0)
   const { openModal } = useModal()
 
-  const testOpenAndCloseModal = useCallback(() => {
-    openModal('test', 'test')
+  const openInputModal = useCallback(() => {
+    openModal('InputModal', {
+      value: 'dynamic',
+      submit: submitFn
+    })
+  }, [])
+
+  const openAlertModal = useCallback(() => {
+    openModal('AlertModal', {
+      text: 'I am alert',
+    })
   }, [])
 
   useEffect(() => {
@@ -42,9 +57,14 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <button onClick={()=> testOpenAndCloseModal()}>
-        openModal
+      <button onClick={()=> openInputModal()}>
+        openInputModal
       </button>
+      <p>
+        <button onClick={()=> openAlertModal()}>
+          openAlertModal
+        </button>
+      </p>
     </div>
   )
 }

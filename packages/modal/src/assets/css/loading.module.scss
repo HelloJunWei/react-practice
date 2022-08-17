@@ -1,0 +1,13 @@
+.loading {
+  opacity: 0;
+  animation: loading .2s 1 cubic-bezier(0.39, 0.58, 0.57, 1);
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+/* Loading Animation */
+@keyframes loading {
+  100% {
+    opacity: 1
+  }
+}
