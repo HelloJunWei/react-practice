@@ -1,9 +1,11 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Modal from './Modal'
 import { ModalContextProvider } from './context/modalContext'
 import { uuid4 } from '../../utils/utils'
+import { CSSTransition } from 'react-transition-group'
+import '../../assets/css/fadeTransition.css'
 import type {
   SimpleType,
   ComplexActionType,
@@ -76,7 +78,8 @@ type MockProps = {
 }
 
 function Mock({ componentName, props, setCloseModalFn, removeChild }: MockProps) {
-  const [isShow, setIsShow] = useState(true)
+  const [isShow, setIsShow] = useState(false)
+  const ref = useRef(null)
   setCloseModalFn(() => { 
     setIsShow(false)
   })
@@ -85,12 +88,30 @@ function Mock({ componentName, props, setCloseModalFn, removeChild }: MockProps)
     setIsShow(false)
     removeChild()
   }, [])
+  useEffect(() => {
+    setIsShow(true)
+    return () => setIsShow(false)
+  }, [])
 
-  if (!isShow) return null
+  // if (!isShow) return null
 
   return (
     <ModalContextProvider closeModal={closeFunction}>
-      <Modal componentName={componentName} props={props} isShow={isShow} />
+      <CSSTransition
+        in={isShow}
+        timeout={500}
+        classNames="fade"
+        nodeRef={ref}
+        unmountOnExit
+      >
+        <Modal
+          classNames="fade"
+          ref={ref}
+          componentName={componentName}
+          props={props}
+          isShow={isShow}
+        />
+      </CSSTransition>
     </ModalContextProvider>
   )
 }

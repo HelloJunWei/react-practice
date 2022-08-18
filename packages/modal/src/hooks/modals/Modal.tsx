@@ -1,4 +1,5 @@
-import { useRef, useEffect, lazy, Suspense } from 'react'
+import classnames from 'classnames'
+import { useRef, useEffect, lazy, Suspense, forwardRef, createRef } from 'react'
 import { useClickAway } from 'react-use'
 import modalCss from '../../assets/css/modal.module.scss'
 import { useModalContext } from './context/modalContext'
@@ -15,6 +16,7 @@ type Props = {
   isShow: boolean,
   componentName: ComponentName<ComponentAndProps>,
   props: DynamicComponentType<ComponentAndProps, ComplexActionType['component']>,
+  classNames?: string
 }
 
 const componentData = {
@@ -23,12 +25,17 @@ const componentData = {
 }
 
 
-function Modal({ componentName, props, isShow }: Props) {
+const Modal = forwardRef<HTMLDivElement, Props>(( { classNames, componentName, props, isShow }, outRef) => {
+  const modalRef = outRef || createRef<HTMLDivElement>()
+  const classes = classnames(
+    classNames,
+    modalCss.modalMask
+  )
   const { closeModal } = useModalContext()
   const Component = componentData[componentName]
 
   useEffect(() => {
-  if (!isShow) return
+    if (!isShow) return
     console.log('mount')
 
     return () => {
@@ -41,19 +48,18 @@ function Modal({ componentName, props, isShow }: Props) {
     closeModal()
   })
   return (
-    <div className={modalCss.modalMask}>
+    <div className={classes} ref={modalRef}>
       <div className={modalCss.modalWrapper}>
-        <Suspense fallback={<Loading />} >
-          <div ref={ref} className={modalCss.modalContainer}>
-            <div className={modalCss.cursorSide}>
-              <MaterialIcon className={modalCss.cursorPointer} onClick={closeModal} icon="close" />
-            </div>
-            <Component {...props} />
+      <Suspense fallback={<Loading />} >
+        <div ref={ref} className={modalCss.modalContainer}>
+          <div className={modalCss.cursorSide}>
+            <MaterialIcon className={modalCss.cursorPointer} onClick={closeModal} icon="close" />
           </div>
-        </Suspense>
+          <Component {...props} />
+        </div>
+      </Suspense>
       </div>
     </div>
   )
-}
-
+})
 export default Modal
