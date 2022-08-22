@@ -1,7 +1,7 @@
 {
   "name": "monorepo-react",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "start:api": "cd packages/fakeApi && yarn start"
