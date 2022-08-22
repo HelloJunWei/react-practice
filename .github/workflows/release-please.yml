@@ -12,5 +12,5 @@ jobs:
         with:
           release-type: node
           # title 換過一次之後好像就不能再換？會 release 不過
-          pull-request-title-pattern: "[skip ci] chore ${scope} release${component} ${version}"
+          # pull-request-title-pattern: "[skip ci] chore ${scope} release${component} ${version}"
 
