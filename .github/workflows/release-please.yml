@@ -6,9 +6,9 @@ name: release-please
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, 'chore')"
     steps:
       - uses: google-github-actions/release-please-action@v3
         with:
           release-type: node
-          pull-request-title-pattern: "[skip ci] chore ${scope} release${component} ${version}"
 
