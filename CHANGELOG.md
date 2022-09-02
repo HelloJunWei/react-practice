@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.0](https://github.com/HelloJunWei/react-practice/compare/v1.0.2...v2.0.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* test ci ([daf93f6](https://github.com/HelloJunWei/react-practice/commit/daf93f64b79a250914981d2131c53dcfe38a6367))
+
+
+### Miscellaneous Chores
+
+* release 2.0.0 ([055be14](https://github.com/HelloJunWei/react-practice/commit/055be14bb38381718df8b117d17a0b6b62eb944f))
+
 ## [1.0.2](https://github.com/HelloJunWei/react-practice/compare/v1.0.1...v1.0.2) (2022-08-22)
 
 
