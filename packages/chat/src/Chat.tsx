@@ -5,8 +5,8 @@ import ChatCss from './assets/Chat.module.scss'
 import classNames from 'classnames'
 import Dashboard from './components/Dashboard'
 import PUBLIC_EVENT, { PUBLIC_EVENT_MAP } from './utils/publicEvent'
-import { useUserSelector } from './store/'
-import { selector } from './store/user'
+import { useUserSelector, useUserDispatch } from './store/'
+import { selector, login } from './store/user'
 
 const getInnerHeight = () => {
   let vh = window.innerHeight;
@@ -15,6 +15,7 @@ const getInnerHeight = () => {
 
 function Chat() {
   const { token } = useUserSelector(selector)
+  const dispatch = useUserDispatch()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -39,6 +40,7 @@ function Chat() {
   useEffect(() => {
     if (!token) return
     console.log('change token: ' + token)
+    dispatch(login({ token }))
   }, [ token ])
 
   return (

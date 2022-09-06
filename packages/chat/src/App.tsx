@@ -9,7 +9,7 @@ if (!init) {
   init = true
 }
 const open = () => {
-  chat?.updateUserToken('test')
+  chat?.updateUserToken('FAKE_NEIL_TOKEN')
   chat?.triggerOpen(true)
 }
 
