@@ -3,13 +3,13 @@ import ChatClass from './chatClass'
 let init = false
 let chat: ChatClass | null = null
 if (!init) {
-  console.log('asd')
   chat = new ChatClass({
     css: ''
   })
   init = true
 }
 const open = () => {
+  chat?.updateUserToken('test')
   chat?.triggerOpen(true)
 }
 

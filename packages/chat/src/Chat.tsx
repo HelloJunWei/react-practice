@@ -5,6 +5,8 @@ import ChatCss from './assets/Chat.module.scss'
 import classNames from 'classnames'
 import Dashboard from './components/Dashboard'
 import PUBLIC_EVENT, { PUBLIC_EVENT_MAP } from './utils/publicEvent'
+import { useUserSelector } from './store/'
+import { selector } from './store/user'
 
 const getInnerHeight = () => {
   let vh = window.innerHeight;
@@ -12,6 +14,8 @@ const getInnerHeight = () => {
 }
 
 function Chat() {
+  const { token } = useUserSelector(selector)
+
   const [isOpen, setIsOpen] = useState(false)
 
   const triggerOpen = (status: boolean | undefined) => {
@@ -30,7 +34,13 @@ function Chat() {
     return () => {
       PUBLIC_EVENT.off(PUBLIC_EVENT_MAP.OPEN_CHAT_DIALOG)
     }
-  })
+  }, [])
+
+  useEffect(() => {
+    if (!token) return
+    console.log('change token: ' + token)
+  }, [ token ])
+
   return (
   <div id={ChatCss.chatWrap} className="flex">
     <Transition show={ isOpen } as="div">

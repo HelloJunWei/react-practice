@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Chat from './Chat'
 import PUBLIC_EVENT, { PUBLIC_EVENT_MAP } from './utils/publicEvent'
+import store from './store/index'
+import { updateToken } from './store/user'
+import { Provider } from 'react-redux'
 
 type ChatConfig = {
   // css file or path
@@ -32,9 +35,11 @@ export default class ChatClass {
     el.setAttribute('id', 'mock_chat')
     root.append(el)
     ReactDOM.createRoot(document.getElementById('mock_chat') as HTMLElement).render(
-      <React.StrictMode>
-        <Chat />
-      </React.StrictMode>
+      <Provider store={store}>
+        <React.StrictMode>
+          <Chat />
+        </React.StrictMode>
+      </Provider>
     )
   }
 
@@ -44,7 +49,7 @@ export default class ChatClass {
 
   updateUserToken(value: string) {
     if (!value) return
-    // userStore.updateUserToken(value)
+    store.dispatch(updateToken(value))
   }
 }
 
