@@ -12,6 +12,8 @@ import type {
   ComponentName
 } from './type'
 
+// type test = DynamicComponentType<ComponentAndProps, 'AlertModal'>
+
 type Props = {
   isShow: boolean,
   componentName: ComponentName<ComponentAndProps>,
@@ -55,7 +57,7 @@ const Modal = forwardRef<HTMLDivElement, Props>(( { classNames, componentName, p
           <div className={modalCss.cursorSide}>
             <MaterialIcon className={modalCss.cursorPointer} onClick={closeModal} icon="close" />
           </div>
-          <Component {...props} />
+          <Component {...props as any} />
         </div>
       </Suspense>
       </div>
